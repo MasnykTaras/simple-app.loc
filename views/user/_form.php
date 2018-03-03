@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
@@ -20,9 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'secondname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'gender')->textInput() ?>
-
-    <?= $form->field($model, 'created')->textInput() ?>
+    <?= $form->field($model, 'gender')->dropDownList(User::getGender()) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 

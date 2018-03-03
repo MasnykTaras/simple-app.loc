@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "user".
@@ -27,6 +28,12 @@ class User extends \yii\db\ActiveRecord
     {
         return 'user';
     }
+    /*
+     * Gender constant
+     */
+    const MEN = 1;
+    const WOMEN = 2;
+    const UNDEFINED = 0;
 
     /**
      * {@inheritdoc}
@@ -35,9 +42,12 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['login', 'password', 'name', 'secondname', 'gender', 'created', 'email'], 'required'],
-            [['gender'], 'integer'],
+            [['gender'], 'integer'],           
+            [['name', 'secondname', 'email'], 'string', 'max' => 255],
+            [['name', 'secondname'], 'filter', 'filter'=>'ucfirst'],
             [['created'], 'safe'],
-            [['login', 'password', 'name', 'secondname', 'email'], 'string', 'max' => 255],
+            [['login'], 'string', 'min' => 4],
+            [['password'], 'string', 'min' => 6],
             [['login'], 'unique'],
             [['email'], 'unique'],
         ];
@@ -66,5 +76,14 @@ class User extends \yii\db\ActiveRecord
     public function getAddresses()
     {
         return $this->hasMany(Address::className(), ['user_id' => 'id']);
+    }
+    public static function getGender()
+    {
+        $gender = [
+            ['value' => self::MEN, 'title' => 'Men'],
+            ['value' => self::WOMEN, 'title' => 'Women'],
+            ['value' => self::UNDEFINED, 'title' => 'Undefined'],
+        ];
+        return ArrayHelper::map($gender, 'value', 'title');
     }
 }
