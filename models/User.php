@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use DateTime;
 
 /**
  * This is the model class for table "user".
@@ -41,7 +42,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['login', 'password', 'name', 'secondname', 'gender', 'created', 'email'], 'required'],
+            [['login', 'password', 'name', 'secondname', 'gender', 'email'], 'required'],
             [['gender'], 'integer'],           
             [['name', 'secondname', 'email'], 'string', 'max' => 255],
             [['name', 'secondname'], 'filter', 'filter'=>'ucfirst'],
@@ -50,6 +51,7 @@ class User extends \yii\db\ActiveRecord
             [['password'], 'string', 'min' => 6],
             [['login'], 'unique'],
             [['email'], 'unique'],
+            [['created'],'default', 'value' => date(DateTime::ISO8601)],
         ];
     }
 

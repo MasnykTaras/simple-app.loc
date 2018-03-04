@@ -66,7 +66,10 @@ class AddressController extends Controller
     {
         $model = new Address();
 
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            var_dump(Yii::$app->request->post());
+            die;
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

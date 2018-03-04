@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\User;
+use app\models\Address;
 use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -64,14 +65,28 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $modelUser = new User();
+        $modelAddress = new Address();       
+        
+        if (Yii::$app->request->post()) {
+            
+            $modelUser->load(Yii::$app->request->post());
+            
+            $modelAddress->load(Yii::$app->request->post());            
+           
+           
+            
+            if($modelUser->save()){
+                 $modelAddress->user_id = $modelUser->id;
+                 $modelAddress->save();
+                return $this->redirect(['view', 'id' => $modelUser->id]);
+                
+            }
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'modelUser' => $modelUser,
+            'modelAddress' => $modelAddress,
         ]);
     }
 

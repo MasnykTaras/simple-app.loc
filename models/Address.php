@@ -34,7 +34,7 @@ class Address extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['index', 'state', 'city', 'strite', 'user_id'], 'required'],
+            [['index', 'state', 'city', 'strite', 'strit_number', 'user_id'], 'required'],
             [['index', 'strit_number', 'office_number', 'user_id'], 'integer'],
             [['state', 'city', 'strite'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],

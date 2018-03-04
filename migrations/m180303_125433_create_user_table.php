@@ -20,7 +20,7 @@ class m180303_125433_create_user_table extends Migration
             'name' => $this->string()->notNull(),
             'secondname' => $this->string()->notNull(),
             'gender' => $this->integer()->defaultValue(0),
-            'created' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
+            'created' => $this->string()->notNull(),
             'email' => $this->string()->unique(),
         ]);
     }
