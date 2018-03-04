@@ -37,7 +37,7 @@ class Address extends \yii\db\ActiveRecord
     {
         return [
             [['post_index', 'state', 'city', 'street', 'street_number', 'user_id'], 'required'],
-            [[ 'strit_number', 'office_number', 'user_id'], 'integer'],
+            [[ 'street_number', 'office_number', 'user_id'], 'integer'],
             [['post_index', 'state', 'city', 'street'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
