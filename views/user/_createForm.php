@@ -27,9 +27,9 @@ use app\models\User;
     
     <h2>Address</h2>
     
-    <?= $form->field($modelAddress, 'index')->textInput() ?>
+    <?= $form->field($modelAddress, 'post_index')->textInput() ?>
 
-    <?= $form->field($modelAddress, 'state')->textInput(['maxlength' => true]) ?>
+     <?= $form->field($modelAddress, 'state')->dropDownList($modelAddress->createCodeArrey()) ?>
 
     <?= $form->field($modelAddress, 'city')->textInput(['maxlength' => true]) ?>
 
