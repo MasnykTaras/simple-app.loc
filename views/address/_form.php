@@ -18,9 +18,9 @@ use yii\widgets\ActiveForm;
     
     <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'strite')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'strit_number')->textInput() ?>
+    <?= $form->field($model, 'street_number')->textInput() ?>
 
     <?= $form->field($model, 'office_number')->textInput() ?>
 

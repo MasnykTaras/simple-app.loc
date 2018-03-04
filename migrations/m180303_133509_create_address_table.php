@@ -18,8 +18,8 @@ class m180303_133509_create_address_table extends Migration
             'post_index' => $this->string()->notNull(),
             'state' => $this->string()->notNull(),
             'city' => $this->string()->notNull(),
-            'strite' => $this->string()->notNull(),
-            'strit_number' => $this->integer(),
+            'street' => $this->string()->notNull(),
+            'street_number' => $this->integer(),
             'office_number' => $this->integer(),
             'user_id' => $this->integer()->notNull(),
         ]);

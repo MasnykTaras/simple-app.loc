@@ -13,8 +13,8 @@ use yii\helpers\ArrayHelper;
  * @property stirng $post_index
  * @property string $state
  * @property string $city
- * @property string $strite
- * @property int $strit_number
+ * @property string $street
+ * @property int $street_number
  * @property int $office_number
  * @property int $user_id
  *
@@ -36,9 +36,9 @@ class Address extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['post_index', 'state', 'city', 'strite', 'strit_number', 'user_id'], 'required'],
+            [['post_index', 'state', 'city', 'street', 'street_number', 'user_id'], 'required'],
             [[ 'strit_number', 'office_number', 'user_id'], 'integer'],
-            [['post_index', 'state', 'city', 'strite'], 'string', 'max' => 255],
+            [['post_index', 'state', 'city', 'street'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -53,8 +53,8 @@ class Address extends \yii\db\ActiveRecord
             'post_index' => 'Post index',
             'state' => 'State',
             'city' => 'City',
-            'strite' => 'Strite',
-            'strit_number' => 'Strit Number',
+            'street' => 'Street',
+            'street_number' => 'Street Number',
             'office_number' => 'Office Number',
             'user_id' => 'User ID',
         ];

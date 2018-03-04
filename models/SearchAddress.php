@@ -18,9 +18,9 @@ class SearchAddress extends Address
     public function rules()
     {
         return [
-            [['id', 'strit_number', 'office_number', 'user_id'], 'integer'],
+            [['id', 'street_number', 'office_number', 'user_id'], 'integer'],
             [['post_index'], 'string'],
-            [['state', 'city', 'strite'], 'safe'],
+            [['state', 'city', 'street'], 'safe'],
         ];
     }
 
@@ -71,14 +71,14 @@ class SearchAddress extends Address
         $query->andFilterWhere([
             'id' => $this->id,
             'post_index' => $this->post_index,
-            'strit_number' => $this->strit_number,
+            'street_number' => $this->street_number,
             'office_number' => $this->office_number,
             'user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'state', $this->state])
             ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'strite', $this->strite]);
+            ->andFilterWhere(['like', 'street', $this->street]);
 
         return $dataProvider;
     }

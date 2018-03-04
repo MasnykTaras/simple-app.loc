@@ -33,9 +33,9 @@ use app\models\User;
 
     <?= $form->field($modelAddress, 'city')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($modelAddress, 'strite')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($modelAddress, 'street')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($modelAddress, 'strit_number')->textInput() ?>
+    <?= $form->field($modelAddress, 'street_number')->textInput() ?>
 
     <?= $form->field($modelAddress, 'office_number')->textInput() ?>
     

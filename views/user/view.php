@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'post_index',
             'state',
             'city',
-            'strite',
+            'street',
             [
                 'class' => 'yii\grid\ActionColumn',
               
