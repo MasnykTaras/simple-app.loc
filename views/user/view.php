@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
@@ -28,15 +29,58 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'login',
             'password',
             'name',
             'secondname',
             'gender',
-            'created',
+            [
+                'label' => 'created',
+                'value' => date('d-m-Y H:i', strtotime($model->created)),
+            ],           
             'email:email',
         ],
     ]) ?>
+    <h2> Address</h2>
+    <p>
+        <?= Html::a('Create Address', ['/address/create',  'id' => $model->id], ['class' => 'btn btn-success']) ?>
+    </p>
+     <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'post_index',
+            'state',
+            'city',
+            'strite',
+            [
+                'class' => 'yii\grid\ActionColumn',
+              
+                'visibleButtons' =>[
+                    'delete' => function($model){
+                        return $model::find()->count() > 1;
+                    }
+                ],                
+               
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        $url ='/address/view?id='.$model->id;
+                        return $url;
+                    }
+
+                    if ($action === 'update') {
+                        $url ='/address/update?id='.$model->id;
+                        return $url;
+                    }
+                    if ($action === 'delete') {
+                        $url ='/address/delete?id='.$model->id;
+                        return $url;
+                    }
+
+                 },
+            ],
+        ],
+    ]); ?>
 
 </div>

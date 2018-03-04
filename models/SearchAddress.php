@@ -18,7 +18,8 @@ class SearchAddress extends Address
     public function rules()
     {
         return [
-            [['id', 'index', 'strit_number', 'office_number', 'user_id'], 'integer'],
+            [['id', 'strit_number', 'office_number', 'user_id'], 'integer'],
+            [['post_index'], 'string'],
             [['state', 'city', 'strite'], 'safe'],
         ];
     }
@@ -41,12 +42,21 @@ class SearchAddress extends Address
      */
     public function search($params)
     {
-        $query = Address::find();
+        if(isset($params[id]) && !empty($params[id])){
+            $query = Address::find()->where(['user_id' => $params['id']]);
+        }else{
+          $query = Address::find();  
+        }
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'forcePageParam' => false,
+                'pageSizeParam' => false,
+                'pageSize' => 5
+            ]
         ]);
 
         $this->load($params);
@@ -60,7 +70,7 @@ class SearchAddress extends Address
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'index' => $this->index,
+            'post_index' => $this->post_index,
             'strit_number' => $this->strit_number,
             'office_number' => $this->office_number,
             'user_id' => $this->user_id,

@@ -3,12 +3,14 @@
 namespace app\models;
 
 use Yii;
+use  app\models\User;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "address".
  *
  * @property int $id
- * @property int $index
+ * @property stirng $post_index
  * @property string $state
  * @property string $city
  * @property string $strite
@@ -34,9 +36,9 @@ class Address extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['index', 'state', 'city', 'strite', 'strit_number', 'user_id'], 'required'],
-            [['index', 'strit_number', 'office_number', 'user_id'], 'integer'],
-            [['state', 'city', 'strite'], 'string', 'max' => 255],
+            [['post_index', 'state', 'city', 'strite', 'strit_number', 'user_id'], 'required'],
+            [[ 'strit_number', 'office_number', 'user_id'], 'integer'],
+            [['post_index', 'state', 'city', 'strite'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -48,7 +50,7 @@ class Address extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'index' => 'Index',
+            'post_index' => 'Post index',
             'state' => 'State',
             'city' => 'City',
             'strite' => 'Strite',
@@ -63,6 +65,22 @@ class Address extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return ArrayHelper::map(User::find('login', 'id')->all(), 'id', 'login');
+    }
+     /**
+     * Get list of country
+     * @return array
+     */
+    protected  function getCountryCode()
+    {
+        $content = file_get_contents('https://restcountries.eu/rest/v2/all');
+
+       return json_decode($content);
+         
+    }
+    
+    public  function createCodeArrey()
+    {
+        return ArrayHelper::map($this->getCountryCode(), 'alpha2Code', 'name');
     }
 }

@@ -6,6 +6,7 @@ use Yii;
 use app\models\User;
 use app\models\Address;
 use app\models\UserSearch;
+use app\models\SearchAddress;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -53,8 +54,14 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        
+        $searchModel = new SearchAddress();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

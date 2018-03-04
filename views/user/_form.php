@@ -21,7 +21,7 @@ use app\models\User;
 
     <?= $form->field($model, 'secondname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'gender')->dropDownList(User::getGender()) ?>
+    <?= $form->field($model, 'gender')->dropDownList($model->getGender()) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 

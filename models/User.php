@@ -79,7 +79,7 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Address::className(), ['user_id' => 'id']);
     }
-    public static function getGender()
+    public function getGender()
     {
         $gender = [
             ['value' => self::MEN, 'title' => 'Men'],

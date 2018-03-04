@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'index') ?>
+    <?= $form->field($model, 'post_index') ?>
 
     <?= $form->field($model, 'state') ?>
 

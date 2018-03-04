@@ -12,10 +12,10 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'index')->textInput() ?>
+    <?= $form->field($model, 'post_index')->textInput() ?>
 
-    <?= $form->field($model, 'state')->textInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'state')->dropDownList($model->createCodeArrey()) ?>
+    
     <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'strite')->textInput(['maxlength' => true]) ?>
@@ -23,8 +23,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'strit_number')->textInput() ?>
 
     <?= $form->field($model, 'office_number')->textInput() ?>
-
-    <?= $form->field($model, 'user_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

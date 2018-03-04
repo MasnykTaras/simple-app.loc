@@ -62,14 +62,13 @@ class AddressController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new Address();
-
+        $model->user_id = $id;
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            var_dump(Yii::$app->request->post());
-            die;
+          
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -127,4 +126,5 @@ class AddressController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+   
 }
