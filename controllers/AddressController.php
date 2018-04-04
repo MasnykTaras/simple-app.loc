@@ -8,6 +8,7 @@ use app\models\SearchAddress;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\zcash\Bitcoin;
 
 /**
  * AddressController implements the CRUD actions for Address model.
@@ -37,7 +38,6 @@ class AddressController extends Controller
     {
         $searchModel = new SearchAddress();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use  app\models\User;
+use app\models\User;
 use yii\helpers\ArrayHelper;
 
 /**

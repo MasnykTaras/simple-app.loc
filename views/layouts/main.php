@@ -38,6 +38,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            ['label' => 'Zcash', 'url' => ['/zcash']],
             ['label' => 'User', 'url' => ['/user/index']],
             ['label' => 'Address', 'url' => ['/address/index']],            
         ],

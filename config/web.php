@@ -48,13 +48,21 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '' => 'user/index',                                
-                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',    
+                '' => 'zcash/default/index',                                
+                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>', 
+                 'zcash/get-info' => 'zcash/default/get-info',
+                'zcash/<action:\w+>' => 'zcash/default/<action>',
+               
             ],
         ],
         
     ],
     'params' => $params,
+    'modules' => [
+        'zcash' => [
+            'class' => 'app\modules\zcash\ZCash',
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
